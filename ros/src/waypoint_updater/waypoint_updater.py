@@ -56,12 +56,32 @@ class WaypointUpdater(object):
     def loop(self):               
         if (self.pose and self.base_waypoints): 
             # Get closest waypoint  
-            closest_waypoint_idx = self.get_closest_waypoint_idx()
+            #closest_waypoint_idx = self.get_closest_waypoint_idx()
             # get the next Waypoint, NOT the closest waypoint, pass the Next waypoint
-            next_index = self.get_next_waypoint(self.pose, closest_waypoint_idx)
+            closest_index = self.get_closest_waypoint(self.pose)
+            next_index = self.get_next_waypoint(self.pose, closest_waypoint)
             self.publish_waypoints(next_index)
-            
-            
+
+ 
+    def dist(self, p1, p2):
+        x, y, z = p1.x - p2.x, p1.y - p2.y, p1.z - p2.z
+        return math.sqrt(x*x + y*y + z*z)
+    
+    def get_closest_waypoint(self, pose):
+        closest_index = 0
+        closest_dist = 100000
+        p1 = self.pose.pose.position
+        
+        for i in range(len(self.base_waypoints.waypoints)):
+            p2 = self.base_waypoints.waypoints[i].pose.pose.position
+            d = self.dist(p1, p2)
+            if (d < closest_dist):
+                closest_dist = d
+                closest_index = i
+              
+        return closest_index        
+        
+        
     def get_closest_waypoint_idx(self):
         x = self.pose.pose.position.x
         y = self.pose.pose.position.y
