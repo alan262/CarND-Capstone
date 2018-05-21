@@ -115,7 +115,7 @@ class WaypointUpdater(object):
         next_index = index
         p1 = self.pose.pose.position
         p2 = self.base_waypoints.waypoints[index].pose.pose.position
-        heading = math.atan((p2.y-p1.y), (p2.x-p1.x))
+        heading = math.atan2((p2.y-p1.y), (p2.x-p1.x))
         quad = (    self.pose.pose.orientation.x,
                     self.pose.pose.orientation.y,
                     self.pose.pose.orientation.z,
