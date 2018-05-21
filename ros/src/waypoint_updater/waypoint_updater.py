@@ -58,8 +58,16 @@ class WaypointUpdater(object):
             # Get closest waypoint  
             #closest_waypoint_idx = self.get_closest_waypoint_idx()
             # get the next Waypoint, NOT the closest waypoint, pass the Next waypoint
-            closest_index = self.get_closest_waypoint(self.pose)
+            closest_waypoint = self.get_closest_waypoint(self.pose)
             next_index = self.get_next_waypoint(self.pose, closest_waypoint)
+            
+            '''
+            final_waypoints = []
+            for i in range(next_index, next_index + LOOKAHEAD_WPS):
+                i = i % len(self.base_waypoints.waypoints)
+                p = self.base_waypoints.waypoints[i]
+                final_waypoints.append(p)
+            '''
             self.publish_waypoints(next_index)
 
  
