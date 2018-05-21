@@ -20,4 +20,9 @@
 
     <!--Traffic Light Locations and Camera Config -->
     <param name="traffic_light_config" textfile="$(find tl_detector)/sim_traffic_light_config.yaml" />
+    
+    <!--PID values for Throttle PID controller -->
+    <param name="Kp" value="-0.20" />
+    <param name="Ki" value="-0.005" />
+    <param name="Kd" value="-24" />    
 </launch>
