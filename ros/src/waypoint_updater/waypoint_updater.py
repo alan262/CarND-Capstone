@@ -107,12 +107,9 @@ class WaypointUpdater(object):
         end_pt = min( closest_idx + LOOKAHEAD_WPS, len(self.base_waypoints.waypoints) )
         lane.header    = self.base_waypoints.header
         lane.waypoints = self.base_waypoints.waypoints[ closest_idx: end_pt]
-        self.final_waypoints_pub.publish( lane)
+        self.final_waypoints_pub.publish( lane)                                              
             
-            
-                       
-            
-'''-------- Topic Callback Functions----------------------------------'''            
+    #-------- Topic Callback Functions----------------------------
     def pose_cb(self, msg):
         # TODO: Implement
         self.pose = msg
